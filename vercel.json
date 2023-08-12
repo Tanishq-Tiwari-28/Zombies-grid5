@@ -1,0 +1,23 @@
+{  
+  "builds": [
+    {
+      "src": "Zombies/Zombies/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/Zombies/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/Zombies/Zombies/wsgi.py"
+    }
+  ],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": "Zombies.zombie_app.settings",
+    "SECRET_KEY": "$SECRET_KEY",
+    "DEBUG": "$DEBUG"
+  }
+}

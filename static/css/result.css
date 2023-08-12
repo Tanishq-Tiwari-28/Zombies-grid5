@@ -1,0 +1,12 @@
+/* Custom styles for black and white theme */
+body {
+  background-color: black;
+  color: white;
+}
+#pdf-container {
+  border: 2px solid white;
+}
+#download-button a {
+  background-color: white;
+  color: black;
+}
