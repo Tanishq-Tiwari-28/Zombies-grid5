@@ -15,9 +15,14 @@
       "dest": "/Zombies/Zombies/wsgi.py"
     }
   ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ],
   "env": {
     "DJANGO_SETTINGS_MODULE": "Zombies.zombie_app.settings",
     "SECRET_KEY": "$SECRET_KEY",
     "DEBUG": "$DEBUG"
   }
+  
 }
+
