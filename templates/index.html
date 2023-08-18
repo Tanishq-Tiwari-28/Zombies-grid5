@@ -37,7 +37,7 @@
           <h1 class="text-4xl font-bold mb-6 text-white animate-fade-in-up">
               Discover Meds, Stay Well
           </h1>
-          <form id="contact-form" method="post" action="{% url 'home' %}" onsubmit="showLoadingAnimation()">
+          <form id="contact-form" method="post" onsubmit="showLoadingAnimation()">
               {% csrf_token %}
               {% if not result %}
               <div class="mb-4">
@@ -62,7 +62,7 @@
               </button>
               {% endif %}
           </form>
-          {%if animation == 'True'%}
+          <!-- {%if animation == 'True'%}
           <div id="loading-animation" class="wrapper hidden">
               <div class="circle"></div>
               <div class="circle"></div>
@@ -84,8 +84,8 @@
               <a href="{% url 'download_pdf' %}?result={{ result }}&input_data={{ input_data }}&input_type={{ input_type }}" class="py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600">
                   Download PDF 📄
               </a>
-          </div>
-          {% endif %}
+          </div> -->
+          <!-- {% endif %} -->
       </div>
     </div>
   

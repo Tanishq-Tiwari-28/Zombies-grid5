@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect , HttpResponse
 import joblib
-model = joblib.load('./randomForest.joblib')
+# model = joblib.load('./randomForest.joblib')
 import pandas as pd
 from rdkit import Chem
 from mordred import Calculator, descriptors
 from rdkit.Chem import GetMolFrags
-from chembl_webresource_client.new_client import new_client
+# from chembl_webresource_client.new_client import new_client
+# import chembl_webresource_client
+# from .chembl import ChEMBLClientSingleton
+
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 import io
@@ -16,6 +19,23 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.lib import colors
 from django.http import FileResponse
 import time
+from django.core.cache import cache
+
+
+# def load_ml_model():
+#     # Try to get the model from the cache
+#     model = cache.get('cached_ml_model')
+
+#     if model is None:
+#         # Model is not in the cache, load it from joblib file
+#         model = joblib.load('./randomForest.joblib')
+#         # Store the model in the cache for future requests
+#         cache.set('cached_ml_model', model)
+#     else:
+#         # Use the cached model
+#         pass
+
+#     return model
 
 def smiles_descriptors(smile):
     calc = Calculator(descriptors, ignore_3D=False)
@@ -35,9 +55,8 @@ def smiles_descriptors(smile):
 def chembl_smiles(id):
     print(id)
     try:
-        molecule = new_client.molecule 
+        from .chembl import molecule
         res = molecule.filter(chembl_id=id).only(['molecule_chembl_id', 'pref_name', 'molecule_structures'])
-        
         smile = res[0]['molecule_structures']['canonical_smiles']
         print(smile)
         df = smiles_descriptors(smile)
@@ -53,7 +72,8 @@ def chembl_smiles(id):
 
 def name_chembl(name):
     try:
-        molecule = new_client.molecule
+        from .chembl import molecule
+        # print(molecule)
         mols = molecule.filter(molecule_synonyms__molecule_synonym__iexact=name).only('molecule_chembl_id')
         print(mols)
         if len(mols) >= 1:
@@ -98,12 +118,18 @@ def home(request):
             result = smiles_descriptors(input_data)
             print(result)
         animation = False
+        request.session['result'] = result
+        request.session['input_data'] = input_data
+        request.session['input_type'] = input_type
+        request.session['animation'] = animation
         # time.sleep(2)
-        return render(request, 'index.html', {'result': result  , 'input_data':input_data , 'input_type':input_type , 'animation':animation})
+        return redirect('result')   
     return render(request, 'index.html') #'pdf_viewed': pdf_viewedx 
 
 
 def download_pdf(request):
+    model = joblib.load('./randomForest.joblib')
+    print(model)
     result = request.GET.get('result')
     input_data = request.GET.get('input_data')
     input_type= request.GET.get('input_type')
@@ -133,17 +159,24 @@ def download_pdf(request):
         p.save()
         buffer.seek(0)
         return FileResponse(buffer, as_attachment=True, filename="hello.pdf")
-    
-# def result(request):
-#     # Your logic to generate the result data goes here
-#     result_data = {
-#         'input_type': 'Sample Type',
-#         'input_data': 'Sample Data',
-#         'result': 'Sample Result',
-#     }
 
-#     context = {
-#         'result_data': result_data,
-#     }
+def result(request):
+    # Retrieve data from session
+    result = request.session.get('result')
+    input_data = request.session.get('input_data')
+    input_type = request.session.get('input_type')
+    animation = request.session.get('animation')
+    print("in result")
+    print(result)
+    # Clear session data after retrieving it
+    request.session.pop('result', None)
+    request.session.pop('input_data', None)
+    request.session.pop('input_type', None)
+    request.session.pop('animation', None)
 
-#     return render(request, 'result.html', context)
+    return render(request, 'result.html', {
+        'result': result,
+        'input_data': input_data,
+        'input_type': input_type,
+        'animation': animation,
+    })

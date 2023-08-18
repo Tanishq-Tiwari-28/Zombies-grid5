@@ -6,6 +6,5 @@ document.getElementById("contact-form").addEventListener("submit", function (eve
     } else {
         var warningMessage = document.getElementById("warning-message");
         warningMessage.style.display = "none";
-        showLoadingAnimation();
     }
 });

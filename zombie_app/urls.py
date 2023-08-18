@@ -5,7 +5,7 @@ from django.conf import settings\
 
 urlpatterns = [
     path('', views.home , name='home'),
-    path('download-pdf/', views.download_pdf, name='download_pdf'),
-    # path('result/', views.result, name='result'),
+    path('download_pdf/', views.download_pdf, name='download_pdf'),
+    path('result/', views.result, name='result'),
     # path('view-pdf/', views.view_pdf, name='view_pdf'),
 ]
