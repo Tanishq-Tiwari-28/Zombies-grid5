@@ -4,5 +4,5 @@ zombie_app/__pycache__/
 Zombies/__pycache__
 db.sqlite3
 Zombies/.env
-zombie_app/migrations/
-Zombies/migrations
+# zombie_app/migrations/
+# Zombies/migrations
