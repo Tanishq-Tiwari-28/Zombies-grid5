@@ -1,21 +1,32 @@
-{  
-  "version" : 2,
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "Zombies/wsgi.py"
-    },
-    {
-      "env": {
-        "SECRET_KEY": "@SECRET_KEY",
-        "DEBUG": "@DEBUG"
+  {  
+    "builds": [
+      {
+        "src": "Zombies/wsgi.py",
+        "use": "@vercel/python"    
+      },
+      {
+        "src": "build.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles"
+        }
       }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "Zombies/wsgi.py"
+      }
+    ],
+    "env": {
+      "SECRET_KEY": "@SECRET_KEY",
+      "DEBUG": "@DEBUG"
     }
-  ]
-  
-}
+    
+    
+  }
 
