@@ -34,7 +34,7 @@ DEBUG = os.environ.get('DEBUG'),
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = [ '127.0.0.1' , '.vercel.app' , 'https://zombies-seven.vercel.app/' , '.now.sh']
+ALLOWED_HOSTS = [ '127.0.0.1' , '.vercel.app'  , '.now.sh']
 
 
 # Application definition
