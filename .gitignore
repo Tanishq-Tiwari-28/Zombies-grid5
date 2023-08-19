@@ -6,4 +6,4 @@ db.sqlite3
 Zombies/.env
 # zombie_app/migrations/
 # Zombies/migrations
-staticfiles
+# staticfiles
