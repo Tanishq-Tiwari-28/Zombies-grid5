@@ -1,18 +1,5 @@
 {  
   "version" : 2,
-  "builds": [
-    {
-      "src": "Zombies/wsgi.py",
-      "use": "@vercel/python"    
-    },
-    {
-      "src": "build.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/static/(.*)",
