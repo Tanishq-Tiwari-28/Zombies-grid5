@@ -1,12 +1,17 @@
 {  
+  "version" : 2,
   "builds": [
     {
       "src": "Zombies/wsgi.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config" : { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     },
     {
       "src": "build.sh",
-      "use": "@vercel/static-build"
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles"
+      }
     }
   ],
   "routes": [
@@ -18,12 +23,7 @@
       "src": "/(.*)",
       "dest": "Zombies/wsgi.py"
     }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "zombie_app.settings",
-    "SECRET_KEY": "$SECRET_KEY",
-    "DEBUG": "$DEBUG"
-  }
+  ]
   
 }
 

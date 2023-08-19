@@ -145,6 +145,7 @@ def download_pdf(request):
         textLines = [
             f"Input Type: {input_type}",
             f"Input Data: {input_data}",
+            f"Result: {result}",
         ]
         p.setTitle(documentTitle)
         p.setFont("Helvetica-Bold", 18)
