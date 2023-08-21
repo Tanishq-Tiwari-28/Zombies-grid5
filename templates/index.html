@@ -5,13 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Know Your Health</title>
-    <!-- Link the CSS file -->
+
     <link href="../static/css/styles.css" rel="stylesheet" />
     <link href="../static/css/load.css" rel="stylesheet" />
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
     
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
     
     <!-- Add Tailwind CSS CDN link -->
     <link
@@ -23,13 +23,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    
   </head>
-  <body class="bg-cover bg-center bg-blue-200 h-screen">
+  <body class="bg-cover bg-center bg-blue-200 h-screen z-40">
     <!-- Particle Effect -->
-    <div
-      id="particles-js"
-      class="fixed top-0 left-0 w-screen h-screen z-[-1]"
-    ></div>
+    <div id="particles-js" class="fixed top-0 left-0 w-screen h-screen z-[-1]"></div>
     <!-- End Particle Effect -->
 
     <div class="flex items-center justify-end h-screen pr-36">
@@ -37,7 +35,7 @@
           <h1 class="text-4xl font-bold mb-6 text-white animate-fade-in-up">
               Discover Meds, Stay Well
           </h1>
-          <form id="contact-form" method="post" onsubmit="showLoadingAnimation()">
+          <form id="contact-form" method="post">
               {% csrf_token %}
               {% if not result %}
               <div class="mb-4">
@@ -62,6 +60,15 @@
               </button>
               {% endif %}
           </form>
+          <div id="loading-animation" class="wrapper hidden">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <span>Loading</span>
+          </div>
           <!-- {%if animation == 'True'%}
           <div id="loading-animation" class="wrapper hidden">
               <div class="circle"></div>
@@ -89,11 +96,12 @@
       </div>
     </div>
   
-    <script src="../static/js/particles.js"></script>
-    <script src="../static/js/warning.js"></script>
-    <script src="../static/js/load.js"></script>
-    <script src="../static/js/script.js"></script>
-    <script src="../static/js/script3.js"></script>
+      <script src="../static/js/particles.js"></script>
+      <script src="../static/js/warning.js"></script>
+      <script src="../static/js/load.js"></script>
+      <script src="../static/js/script.js"></script>
+      <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     
   </body>
 </html>

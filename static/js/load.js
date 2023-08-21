@@ -1,10 +1,12 @@
-document.getElementById("contact-form").addEventListener("submit", function (event) {
-    if (!document.getElementById("input").value.trim()) {
-        event.preventDefault();
-        var warningMessage = document.getElementById("warning-message");
-        warningMessage.style.display = "block";
-    } else {
-        var warningMessage = document.getElementById("warning-message");
-        warningMessage.style.display = "none";
-    }
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("contact-form");
+    const loadingOverlay = document.getElementById("loading-overlay");
+
+    form.addEventListener("submit", function() {
+        // Show the loading animation
+        form.style.display = 'none'
+        loadingOverlay.style.display = 'block'
+        
+    });
 });
+

@@ -1,74 +1,205 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Know Your Health</title>
-    <!-- Link the CSS file -->
-    <link href="../static/css/styles.css" rel="stylesheet" />
-    <link href="../static/css/load.css" rel="stylesheet" />
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    
-    <!-- Add Tailwind CSS CDN link -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <!-- Add Animate.css CDN link -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-  </head>
-  <body class="bg-cover bg-center bg-blue-200 h-screen">
-    <!-- Particle Effect -->
-    <div
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Know Your Health</title>
+  <!-- Link the CSS file -->
+  <link href="../static/css/styles2.css" rel="stylesheet" />
+  <link href="../static/css/result2.css" rel="stylesheet" />
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+
+  <!-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
+
+  <!-- Add Tailwind CSS CDN link -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Add Animate.css CDN link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body class="bg-cover bg-center bg-blue-200 h-screen m-0 text-white">
+  <!-- Particle Effect -->
+  <div
       id="particles-js"
       class="fixed top-0 left-0 w-screen h-screen z-[-1]"
-    ></div>
-    <!-- End Particle Effect -->
+  ></div>
+  <!-- End Particle Effect -->
 
-    <div class="flex items-center justify-end h-screen pr-36">
-      <div class="text-center relative z-10">
-          <h1 class="text-4xl font-bold mb-6 text-white animate-fade-in-up">
-              Discover Meds, Stay Well
-          </h1>
-          {%if animation == 'True'%}
-          <div id="loading-animation" class="wrapper hidden">
-              <div class="circle"></div>
-              <div class="circle"></div>
-              <div class="circle"></div>
-              <div class="shadow"></div>
-              <div class="shadow"></div>
-              <div class="shadow"></div>
-              <span>Loading</span>
-          </div>
-          {%endif%}
-          {% if result %}
-          <div id="data-display" class="text-center px-4 mb-8 text-white">
-              <h2 class="text-2xl font-semibold mb-4 ">Generated Report:</h2>
-              <p class="mb-2">Input Type: {{ input_type }}</p>
-              <p class="mb-2">Input Data: {{ input_data }}</p>
-              <p class="mb-4">Result: {{ result }}</p>
-          </div>
-          <div id="download-button">
-              <a href="{% url 'download_pdf' %}?result={{ result }}&input_data={{ input_data }}&input_type={{ input_type }}" class="py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600">
-                  Download PDF 📄
-              </a>
-          </div>
-          {% endif %}
+  <div class="main-container mt-5">
+    <div class="header">
+      <h1 class="text-3xl font-bold mb-1 text-white animate-fade-in-up">
+        Discover Meds, Stay Well
+      </h1>
+    </div>
+    <div class="flex-container p-7 border-b-2 ">
+      <div class="image-container flex justify-center ">
+        <img src="../static/img/molecule.png" alt="Image">
+      </div>
+      <div class="content-container text-white text-1xl m-0">
+        <h1 class="flex justify-center text-2xl mb-3">Molecular Properties</h1>
+        <div class="info-box flex justify-between">
+          <h2>Drug name</h2>
+          <p></p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>Formula</h2>
+          <p>{{prop.formula}}</p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>Molecular weight</h2>
+          <p>{{prop.molar_weight}}</p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>Number of hydrogen Bonds</h2>
+          <p>{{prop.num_h_bonds}}</p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>Boiling point</h2>
+          <p>{{prop.boiling_pt}}</p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>Melting point</h2>
+          <p>{{prop.melting_pt}}</p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>Log(P)</h2>
+          <p>{{prop.log_p}}</p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>No. of HBond donors</h2>
+          <p>{{prop.num_h_bond_donors}}</p>
+        </div>
+        <div class="info-box flex justify-between">
+          <h2>No. of HBond acceptors</h2>
+          <p>{{prop.num_h_bond_acceptors}}</p>
+        </div>
+        
+
+      </div>
+    </div >
+    <div class="w-full px-20 mb-10 text-1xl mt-4">
+      <div class="flex justify-between">
+        <h2 class="m-0">PIC50 Value - {{predictions.13.0}}</h2>
+        <!-- here must be bar -->
+      </div>
+      <div class="flex justify-between">
+        <h2 class="m-0">Effectivess Score - {{predictions.0.0.0}}</h2>
       </div>
     </div>
-  
-    <script src="../static/js/particles.js"></script>
-    <!-- <script src="../static/js/warning.js"></script> -->
-    <!-- <script src="../static/js/load.js"></script> -->
-    <script src="../static/js/script.js"></script>
-    <!-- <script src="../static/js/script3.js"></script> -->
+    <div class="w-full px-20 mb-10 text-1xl">
+      Receptors 
+      <div class="flex justify-between">
+        <div>
+          <div class="flex justify-between">
+            <h2 class="m-0">NR.AhR  </h2>
+            <p>{{predictions.1.0}}</p><!-- here must be bar -->
     
-  </body>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">NR.AR   </h2>
+            <p>{{predictions.2.0}}</p>
+            
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">NR.AR.LBD </h2>
+            <p>{{predictions.3.0}}</p>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">NR.Aromatase  </h2>
+            <!-- here must be bar -->
+            <p>{{predictions.4.0}}</p>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">NR.ER   </h2>
+            <!-- here must be bar -->
+            <p>{{predictions.5.0}}</p>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">NR.ER.LBD  </h2>
+            <!-- here must be bar -->
+            <p>{{predictions.6.0}}</p>
+          </div>
+          
+        </div>
+        <div>
+          <div class="flex justify-between">
+            <h2 class="m-0">NR.PPAR.gamma  </h2>
+            <!-- here must be bar -->
+            <p>  {{predictions.7.0}}</p>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">SR.ARE  </h2>
+            <!-- here must be bar -->
+            <p>{{predictions.8.0}}</p>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">SR.ATAD5  </h2>
+            <p>{{predictions.9.0}}</p>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">SR.HSE  </h2>
+            <!-- here must be bar -->
+            <p>{{predictions.10.0}}</p>
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">SR.MMP  </h2>
+            <p>{{predictions.11.0}}</p>
+            <!-- here must be bar -->
+          </div>
+          <div class="flex justify-between">
+            <h2 class="m-0">SR.p53  </h2>
+            <p>{{predictions.12.0}}</p>
+            <!-- here must be bar -->
+          </div>
+          
+        </div>
+      </div>
+
+      
+      </div>
+      
+
+      <div class="w-full px-20 mb-10 text-1xl">
+        <div class="flex justify-between">
+          <h2 class="m-0">Lipinski Rule(Only for Oral Drugs) :: {{prop.Lipinski}}</h2>
+          <!-- here must be bar -->
+        </div>
+      </div>
+
+   
+
+    <div class="text-1xl w-[500px]">
+      <h1 class="text-1xl font-bold mb-6 text-white animate-fade-in-up">
+        {{efficacy}}
+      </h1>
+      <h1 class="text-1xl font-bold mb-6 text-white animate-fade-in-up">
+        {{effectiveness.IC50_res}}
+      </h1>
+      <h1 class="text-1xl font-bold mb-6 text-white animate-fade-in-up">
+        {{effectiveness.Effects}}
+      </h1>
+    </div>
+
+
+    <div id="download-button">
+      <a href="{% url 'download_pdf' %}?input_data={{ input_data }}&input_type={{ input_type }}&formula={{ prop.formula }}&molar_weight={{ prop.molar_weight }}&num_h_bonds={{ prop.num_h_bonds }}&boiling_pt={{ prop.boiling_pt }}&melting_pt={{ prop.melting_pt }}&log_p={{ prop.log_p }}&num_h_bond_acceptors={{ prop.num_h_bond_acceptors }}&num_h_bond_donors={{ prop.num_h_bond_donors }}"
+        class="py-2 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-600 block ">
+        Download PDF 📄
+      </a>
+    </div>
+  </div>
+</div>
+
+
+  <script src="../static/js/particles.js"></script>
+  <!-- <script src="../static/js/warning.js"></script> -->
+  <!-- <script src="../static/js/load.js"></script> -->
+  <script src="../static/js/script.js"></script>
+  <!-- <script src="../static/js/script3.js"></script> -->
+
+</body>
+
 </html>
