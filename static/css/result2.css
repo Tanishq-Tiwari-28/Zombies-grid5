@@ -4,6 +4,8 @@
   align-items: center;
 
   /* height: 100vh; */
+  overflow: auto  ;
+  overflow-y: hidden;
   width: 50%;
   position: relative;
   left: 47%;

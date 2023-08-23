@@ -8,7 +8,8 @@
 
     <link href="../static/css/styles.css" rel="stylesheet" />
     <link href="../static/css/load.css" rel="stylesheet" />
-    
+    <link rel="stylesheet" href="../static/css/error.css">
+
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
     
     <!-- <script src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
@@ -25,6 +26,11 @@
     />
     
   </head>
+  {%if error == 1%}
+    <div id="errorBox" class="error-box">
+      Either Input format is incorrect or MOLECULE does not Exist
+    </div>
+  {%endif%}
   <body class="bg-cover bg-center bg-blue-200 h-screen z-40">
     <!-- Particle Effect -->
     <div id="particles-js" class="fixed top-0 left-0 w-screen h-screen z-[-1]"></div>
@@ -60,7 +66,7 @@
               </button>
               {% endif %}
           </form>
-          <div id="loading-animation" class="wrapper hidden">
+          <div id="loading-overlay" class="wrapper hidden">
             <div class="circle"></div>
             <div class="circle"></div>
             <div class="circle"></div>
@@ -96,11 +102,13 @@
       </div>
     </div>
   
-      <script src="../static/js/particles.js"></script>
-      <script src="../static/js/warning.js"></script>
-      <script src="../static/js/load.js"></script>
-      <script src="../static/js/script.js"></script>
-      <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="../static/js/particles.js"></script>
+    <script src="../static/js/warning.js"></script>
+    <script src="../static/js/script.js"></script>
+    <script src="../static/js/input.js"></script>
+    <script src="../static/js/load.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="../static/js/error.js"></script>
 
     
   </body>

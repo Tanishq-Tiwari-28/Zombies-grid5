@@ -1,64 +1,51 @@
-
 /* styles.css */
 body {
-    /* background-image: url("https://eu1.bumbcdn.com/p53/hidden?euri=nzYRZEhdXrSKPmZPo1KbTv0b4T.hNt7X7eT4FKV.6ZVL-hyGzY5C4u8WEY6SmeMNmn9LFSRkf6faARf8Pkb5T6ECqHhXVxlE2DIm48AIEhzrrL3D74CrVVQ3XHUwk2vtdtAqdgNFs3bgiJ.IXK4rl30vccnf1UR0PQi5Wn.FtPg&size=__size__&ck=f1bea40b6bff2f7550bf8106bdf59871&wm_size=72x72&wm_offs=-5x-5&h=JOi&gs=server_get_user%3A%3Aprofile_photo&t=42.1.0.0"); */
-    background-image: url("../img/back.jpg");
-    background-size: cover;
-    background-position: center;
-    backdrop-filter: blur(2px); /* Adjust the blur amount as needed */
+  background-image: url("../img/back.jpg");
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(2px);
+  overflow-x: hidden; /* Adjust the blur amount as needed */
+}
+
+.container {
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  align-items: center;
+  padding: 1rem;
+  max-width: 100%; /* Ensure content doesn't exceed viewport width */
+  width: 100%;
+   /* Adjust padding for better mobile spacing */
+}
+
+.animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInUp 1s forwards;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Add styles to center the content */
-  .container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    /* height: 180vh; */
-    padding-right: 20px;
-    
-  }
-  
-  /* Add animation to the form container */
-  .animate-fade-in-up {
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeInUp 1s forwards;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Add background color to the particle effect container */
-  #particles-js {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent; /* Set the background to transparent */
-  }
-  
-  /* Center the form container vertically */
-  /* .flex {
-    min-height: 100vh;
-  } */
-  
-  /* Add some spacing between form elements */
-  .mb-8 {
-    margin-bottom: 2rem;
-  }
-  
-  #error-message {
-    max-width: 270px;
-  }
-  
-  
-  
-  
+}
+
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent; /* Set the background to transparent */
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+#error-message {
+  max-width: 270px;
+}
