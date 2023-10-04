@@ -5,4 +5,4 @@ We have used ML algorithms and different AI techniques along with synthetic data
 
 
 We have tried to build regression and classification models for predicting the same 
-In this project, we have learned how to use SMOTE for synthetic data generation, about the ensemble, and about adjustments and projections that are needed to build the classification models.
+In this project, we have learned how to use SMOTE for synthetic data generation, about the ensemble models, and about adjustments and projections that are needed to build the classification models.
