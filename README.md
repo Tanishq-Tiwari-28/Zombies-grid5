@@ -1,7 +1,7 @@
 # Zombies
 Flipkart Grid 5.0
 We made an interface that can tell about the drug's efficacy and effectiveness.
-We have used ML algorithms and different AI techniques along with synthetic data generation for this. 
+We have used various ML algorithms and different AI techniques along with synthetic data generation for this. 
 
 
 We have tried to build regression and classification models for predicting the same 
